@@ -12,7 +12,7 @@ $ sudo apt-get install trivy
 
 # To scan Docker images which are already installed:
 % docker images
-% trivy image <image name>
+% trivy image (image name)
 
 # To Scan Dockerfile which is not pulled into docker:
 % trivy config <dir name of folder containing Dockerfile>
