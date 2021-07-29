@@ -1,0 +1,21 @@
+To install Rrivy in Mac:
+%brew install aquasecurity/trivy/trivy
+
+To install Trivy in Debian:
+sudo apt-get install wget apt-transport-https gnupg lsb-release
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
+
+--------------------------------------------------------------------
+
+To scan Docker images which are already installed:
+%docker images
+%trivy image <image name>
+
+To Scan Dockerfile which is not pulled into docker:
+%trivy config <dir name of folder containing Dockerfile>
+
+To Scan all Docker files in a directory:
+%trivy fs <dir name of folder conataining all folders>
