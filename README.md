@@ -1,5 +1,5 @@
 # Container-Security
-Includes Security Testing detail of Docker Container
+Includes Security Testing details of Docker Container
 
 # Demo test Apps
 To Install Vulnerable Docker image: <br/>
