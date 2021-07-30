@@ -13,7 +13,9 @@ In Debian: <br/>
 $ sudo apt-get install trivy
 
 In Windows: <br/>
-{Need to do research - No default options available for now}
+{Need to do research - No default options available for now} <br/>
+
+Note: Trivy has an disadvantage with report creation.
 
 # To scan Docker images which are already installed:
 % docker images<br/>
@@ -31,6 +33,9 @@ eg: trivy fs --security-checks vuln,config Demo-Docker-Images
 # To Scan Github Repository:
 % trivy repo {Github Repo URL} <br/>
 eg: trivy repo https://github.com/Vamckis/Container-Security
+
+# To Output the trivy results into text file
+% trivy image nginx > Output.txt
 
 # References:
 https://github.com/aquasecurity/trivy
