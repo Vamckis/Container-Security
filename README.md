@@ -29,7 +29,7 @@ eg: trivy config python-2.7
 eg: trivy fs --security-checks vuln,config Demo-Docker-Images
 
 # To Scan Github Repository:
-% trivy repo {Github Repo URL}
+% trivy repo {Github Repo URL} <br/>
 eg: trivy repo https://github.com/Vamckis/Container-Security
 
 # References:
