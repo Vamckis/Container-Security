@@ -11,6 +11,9 @@ $ docker pull nginx
 # To install Trivy in Debian:
 $ sudo apt-get install trivy
 
+# To Install Trivy in Windows:
+{Need to do research - No default options available for now}
+
 # To scan Docker images which are already installed:
 % docker images<br/>
 % trivy image {image name}
