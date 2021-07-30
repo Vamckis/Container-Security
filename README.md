@@ -1,7 +1,8 @@
 # Container-Security
 Includes Security Testing detail of Docker Container
 
-# To Install Vulnerable Docker image:
+# Demo test Apps
+To Install Vulnerable Docker image: <br/>
 $ docker pull nginx
 
 # To Install Trivy in Mac:
@@ -14,10 +15,10 @@ $ sudo apt-get install trivy
 % docker images<br/>
 % trivy image {image name}
 
-# To Scan Dockerfile which is not pulled into docker:
+# To Scan Dockerfile:
 % trivy config {dir name of folder containing Dockerfile}
 
-# To Scan all Docker files in a directory:
+# To Scan all Dockerfiles in a directory:
 % trivy fs {dir name of folder conataining all folders}
 
 # References:
