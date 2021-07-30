@@ -23,7 +23,3 @@ $ sudo apt-get install trivy
 
 # References:
 https://github.com/aquasecurity/trivy
-
-@settings {
-  font-size: 100;
-}
