@@ -7,3 +7,5 @@
 
 # To Scan all Docker files in a directory:
 % trivy fs <dir name of folder conataining all folders>
+
+% trivy fs --security-checks vuln,config Docker-Images
