@@ -1,7 +1,7 @@
 # Container-Security (Docker & Kubernetes)
 ## Docker: OWASP Top 10
 <details> 
-   <summary> 1: Host OS Vulnerabilities</summary>
+<summary> 1: Host OS Vulnerabilities</summary>
 - If Host OS have vulnerabilities, attacker can use it to gain access to containers and apps running inside them.
 - Example: CVE-2016-5195 - Dirty COW Vulnerability - Privilege escalation in Linux kernel.
 - Attacker an gain root access using the Dirty COW Vulnerability.
