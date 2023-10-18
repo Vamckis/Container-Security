@@ -2,6 +2,7 @@
 ## Docker: OWASP Top 10
 <details> 
 <summary> 1: Host OS Vulnerabilities </summary>
+  
 - If Host OS have vulnerabilities, attacker can use it to gain access to containers and apps running inside them.
 - Resolution: Regular patching of host OS, Usage of IDS, Firewall, Implement strict access controls
 
