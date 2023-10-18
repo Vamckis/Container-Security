@@ -18,6 +18,7 @@
 
 <details> 
 <summary> 2: Insecure Container Images </summary>
+  
 - By compromising the insecure container images, attacker can gain access to applications. 
 - Resolution: Implementation of Image Scannings (To identify vulnerabilities) and Signature Validations (to ensure Images are Trusted)
 - Best practises: Use minimal base images that conbtain only necessary libraries
