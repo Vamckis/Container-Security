@@ -39,10 +39,41 @@
 - Resolution: Implementation security measures like runtime security amd configuration management.
 - Best practises: Implementation of Network segmentation, process isolation and orchestratrion (like kubernetes have default security measures)
 - Best Practises: Add necessary access / remove unnecessary access like below examples:
--- drops capability to modify time ``` docker run --cap-drop=SYS_TIME -d my-image ```
--- ``` docker run --cap-add=NET_BIND_SERVICE -d my-image ```
+drops capability to modify time -- ``` docker run --cap-drop=SYS_TIME -d my-image ```
+Adds Network Bind Service -- ``` docker run --cap-add=NET_BIND_SERVICE -d my-image ```
+- Conduct security assessments.
+  
+### Example: 
+- We can set environment variables in Docker file. Setting credentails as Environment variables may disclose them.
+</details>
+
+
+<details> 
+<summary> 4: Container Escape Vulnerabilities </summary>
+  
+- This can gain access to host system.
+- - option like --privileged may give access to all host systems. It is the same as executing a process with root privileges on the host machine.
+``` docker run --privileged -it --name my-container my-image ```
+- Resolution: Implementation security measures like runtime security and process isolation
+- Best practises: Implementation of orchestratrion (like kubernetes have default security measures)
+- Best Practises: Keep containers updated.
 - Conduct security assessments.
 
-#### CVE-2022-42889 (Command Injection)
-- 
+</details>
+
+<details> 
+<summary> 5: Inadequate Process Isolation </summary>
+  
+- Process running in different conmtainers may interact with each other. 
+- This can lead to cross container compromise and data breaches.
+- Resolution: Implementation process isolation through Namespace isolation (It Isolates Network, File system) and cgroups (Helps to limit resources that container can consume like CPU, memory, I/O)
+- Best practises: Implementation of orchestratrion (like kubernetes have default security measures)
+- Use option --pid when starting the container. Process runnin gunder the pid cannot access process on host system. 
+``` docker run --pid=container -d my-image ```
+- Limit CPU usage when starting container.
+``` docker run --cpu-share=512 --memory=512m --memory-swap=1g -d my-image ```  
+
+### Cross Container Compromise with SYS_PTRACE capability
+- SYS_PTRACE is a linux kernal process / capability which traces and debugs other process. It can reads / modifies memory, registry and extract sensitive data.
+
 </details>
