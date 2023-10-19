@@ -51,8 +51,8 @@ Adds Network Bind Service -- ``` docker run --cap-add=NET_BIND_SERVICE -d my-ima
 <details> 
 <summary> 4: Container Escape Vulnerabilities </summary>
   
-- This can gain access to host system.
-- - option like --privileged may give access to all host systems. It is the same as executing a process with root privileges on the host machine.
+- Breaking out from the container is known as "container escape". It allows an attacker to escape from a container to other container or underlying host and gain access to them.
+- Option like --privileged may give access to all host systems. It is the same as executing a process with root privileges on the host machine.
 ``` docker run --privileged -it --name my-container my-image ```
 - Resolution: Implementation security measures like runtime security and process isolation
 - Best practises: Implementation of orchestratrion (like kubernetes have default security measures)
