@@ -77,3 +77,22 @@ Adds Network Bind Service -- ``` docker run --cap-add=NET_BIND_SERVICE -d my-ima
 - SYS_PTRACE is a linux kernal process / capability which traces and debugs other process. It can reads / modifies memory, registry and extract sensitive data.
 
 </details>
+
+<summary> 6: Inadequate Network Segmentation
+  
+- Process running in different conmtainers may interact with each other. 
+- This can lead to cross container compromise and data breaches.
+- Resolution: Implementation process isolation through Namespace isolation (It Isolates Network, File system) and cgroups (Helps to limit resources that container can consume like CPU, memory, I/O)
+- Best practises: Implementation of orchestratrion (like kubernetes have default security measures)
+- Use option --pid when starting the container. Process runnin gunder the pid cannot access process on host system. 
+``` docker run --pid=container -d my-image ```
+- Limit CPU usage when starting container.
+``` docker run --cpu-share=512 --memory=512m --memory-swap=1g -d my-image ```  
+
+### Cross Container Compromise with SYS_PTRACE capability
+- SYS_PTRACE is a linux kernal process / capability which traces and debugs other process. It can reads / modifies memory, registry and extract sensitive data.
+
+</details>
+
+### References:
+- https://www.cybereason.com/blog/container-escape-all-you-need-is-cap-capabilities
