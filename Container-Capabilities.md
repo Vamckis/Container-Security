@@ -33,8 +33,8 @@ cap_chown, cap_dac_override, cap_fowner, cap_fsetid, cap_kill, cap_setgid, cap_s
 ![image](https://github.com/Vamckis/Container-Security/assets/71128825/63ea1b7c-0e92-4faf-a039-1852a543b719)
 
 - Capabilities are marked as BitMask. Each bit represents a different set of capabilities.
-- Tool to discover and debug capabilities is ``capsh``
-- 
+- Tool to discover and debug capabilities is capsh
+``` capsh --decode= <CAP-BITMASK> ```
 ### Reference:
 - https://www.cybereason.com/blog/container-escape-all-you-need-is-cap-capabilities
 - All Capabilities list: https://man7.org/linux/man-pages/man7/capabilities.7.html
