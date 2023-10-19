@@ -75,8 +75,8 @@ Adds Network Bind Service -- ``` docker run --cap-add=NET_BIND_SERVICE -d my-ima
 
 ### Cross Container Compromise with SYS_PTRACE capability
 - SYS_PTRACE is a linux kernal process / capability which traces and debugs other process. It can reads / modifies memory, registry and extract sensitive data.
-
 </details>
+
 <details>
 <summary> 6: Inadequate Network Segmentation
   
