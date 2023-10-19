@@ -31,3 +31,19 @@
 - After successful execution a file helloworld will be created in app server.
 - References: https://github.com/devenes/text4shell-cve-2022-42889
 </details>
+
+
+<details> 
+<summary> 3: Insecure Container Configurations </summary>
+  
+- Misconfigurations may lead to disclose of sensitive date.
+- Resolution: Implementation security measures like runtime security amd configuration management.
+- Best practises: Implementation of Network segmentation, process isolation and orchestratrion (like kubernetes have default security measures)
+- Best Practises: Add necessary access / remove unnecessary access like below examples:
+-- drops capability to modify time ``` docker run --cap-drop=SYS_TIME -d my-image ```
+-- ``` docker run --cap-add=NET_BIND_SERVICE -d my-image ```
+- Conduct security assessments.
+
+#### CVE-2022-42889 (Command Injection)
+- 
+</details>
