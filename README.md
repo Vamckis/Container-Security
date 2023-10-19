@@ -32,7 +32,6 @@
 - References: https://github.com/devenes/text4shell-cve-2022-42889
 </details>
 
-
 <details> 
 <summary> 3: Insecure Container Configurations </summary>
   
