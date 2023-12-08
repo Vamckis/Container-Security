@@ -1,4 +1,5 @@
 ## Docker Security Tools
+
 ### Trivy
 
 ### Dive
@@ -12,10 +13,14 @@
 - CIS Benchmarks
 
 ### Check Capabilities of Docker
-- capsh --print
+- install libcap2-bin utility to know the capabilities available on the connected container
+  - apt-get install libcap2-bin
+- capsh command is part of the package libcap2-bin upon executing list the capabilities available on the container
+  - capsh --print
 
 ### Nmap
 
+### Pentesting
 - list all repositories in container using curl
   - curl http://192.168.5.6:5000/v2/_catologue
   - curl http://:5000/v2/flag/tags/list
